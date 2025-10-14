@@ -87,6 +87,22 @@ main {
     min-height: calc(100% - 167px);
 }
 
+.main-index {
+    display: grid;
+    grid-template-columns: repeat(3, 0fr);
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+.main-index span{
+    height: 24px;
+    border-radius: 100%;
+}
+.main-index span:hover {
+    cursor: pointer;
+    background-color: #1b357e;
+}
+
 nav#social {
     display: inline;
     width: 80%;

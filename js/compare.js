@@ -37,11 +37,6 @@ function SetCarToCompare(el, carClass) {
                 console.log(`Carro escolhido: ${carClass.nome}` )
                 carArr.push(carClass);
         } else {
-        //   carArr.pop()
-        // carArr.splice(!el.checked)
-        //   carArr.forEach(carClass => {
-        //     console.log(`Carros que ainda estão escolhidos: ${carClass.nome}`);
-        //   })
 
         const index = carArr.findIndex(carro => carro.nome === carClass.nome);
         if (index > -1) {
