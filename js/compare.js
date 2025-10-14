@@ -67,5 +67,6 @@ function HideCompare(){
 }
 
 function UpdateCompareTable() {
-    
+    document.getElementById("compare_modelo_0").innerText = carArr[0].nome;
+
 }
