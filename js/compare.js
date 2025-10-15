@@ -1,13 +1,14 @@
 
 //car
 let carArr = [];
+const infos = ['image', 'modelo', 'alturaCacamba', 'alturaVeiculo', 'alturaSolo', 'capacidadeCarga', 'motor', 'potencia', 'volumeCacamba', 'roda', 'preco'];
 
 class Car {
    
-
-    constructor(nome, preco, alturaCacamba, alturaVeiculo, alturaSolo, capacidadeCarga, motor, potencia, volumeCacamba, roda, image){
-       this.nome = nome;
-       this.preco = preco;
+// imagem, modelo, alturaCacamba, alturaVeiculo, alturaSolo, capacidadeCarga, motor, potencia, volumeCacamba, roda, preco.
+    constructor(image, modelo, alturaCacamba, alturaVeiculo, alturaSolo, capacidadeCarga, motor, potencia, volumeCacamba, roda, preco){
+       this.image = image;
+       this.modelo = modelo;
        this.alturaCacamba = alturaCacamba;
        this.alturaVeiculo = alturaVeiculo;
        this.alturaSolo = alturaSolo;
@@ -16,14 +17,14 @@ class Car {
        this.potencia = potencia;
        this.volumeCacamba = volumeCacamba;
        this.roda = roda;
-       this.image = image;
+       this.preco = preco;
     }
 } 
 
 // search on array if exist carClass returning 1 if not return -1
 function GetCarArrPosition(arr, carClass) {
     for(let i = 0; i < arr.length; i++){
-        if(arr[i].nome  === carClass.nome)
+        if(arr[i].modelo  === carClass.modelo)
             return i;
     }
     return -1;
@@ -34,17 +35,17 @@ function SetCarToCompare(el, carClass) {
     //instanceof verifica se o objeto é uma instãncia de uma determinada classe.
     if(carClass instanceof Car){       
         if(el.checked){
-                console.log(`Carro escolhido: ${carClass.nome}` )
+                console.log(`Carro escolhido: ${carClass.modelo}` )
                 carArr.push(carClass);
         } else {
 
-        const index = carArr.findIndex(carro => carro.nome === carClass.nome);
+        const index = carArr.findIndex(carro => carro.modelo === carClass.modelo);
         if (index > -1) {
             carArr.splice(index, 1);
         }
 
         carArr.forEach(carro => {
-            console.log(`Carros que ainda estão escolhidos: ${carro.nome}`);
+            console.log(`Carros que ainda estão escolhidos: ${carro.modelo}`);
         });
         } 
     } else {
@@ -55,6 +56,9 @@ function SetCarToCompare(el, carClass) {
 function ShowCompare() {
     if(carArr.length < 2) {
         alert("Precisa marcar 2 carros para apresentar a comparação");
+        return;
+    }else if(carArr.length > 2) {
+        alert("Compare apenas dois carros");
         return;
     }
 
@@ -67,6 +71,19 @@ function HideCompare(){
 }
 
 function UpdateCompareTable() {
-    document.getElementById("compare_modelo_0").innerText = carArr[0].nome;
+    console.log("Botao clicado")
+    index= 0;
+    carArr.forEach((car, i) => {
+        infos.forEach((info, index) => {
+            console.log("Item adicionado")
+            let tagEscolhido = document.getElementById(`compare_${info}_${i}`);
+            if(info === 'image'){
+                const tagImg = document.createElement('img');
+                tagImg.src = car[info]
+                tagEscolhido.appendChild(tagImg)
+            }
+            tagEscolhido.textContent = car[info];
+        })
+    })
 
 }
