@@ -74,7 +74,7 @@ function UpdateCompareTable() {
     console.log("Botao clicado")
     index= 0;
     carArr.forEach((car, i) => {
-        infos.forEach((info, index) => {
+        infos.forEach((info) => {
             console.log("Item adicionado")
             let tagEscolhido = document.getElementById(`compare_${info}_${i}`);
             if(info === 'image'){
