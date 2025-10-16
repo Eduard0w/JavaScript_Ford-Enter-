@@ -77,13 +77,19 @@ function UpdateCompareTable() {
         infos.forEach((info) => {
             console.log("Item adicionado")
             let tagEscolhido = document.getElementById(`compare_${info}_${i}`);
-            if(info === 'image'){
-                const tagImg = document.createElement('img');
-                tagImg.src = car[info]
-                tagEscolhido.appendChild(tagImg)
-            }
-            tagEscolhido.textContent = car[info];
-        })
+             // Limpa conteúdo anterior antes de adicionar algo novo
+             tagEscolhido.innerHTML = "";
+
+             if (info === "image") {
+                 let tagImg = document.createElement("img");
+                 tagImg.src = car[info];
+                 tagImg.alt = car.nome || "Imagem do carro";
+                 tagImg.style.width = "200px"; // opcional
+                 tagEscolhido.appendChild(tagImg);
+             } else {
+                 tagEscolhido.textContent = car[info];
+             }
     })
 
+})
 }
