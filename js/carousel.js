@@ -23,8 +23,8 @@ class Carousel {
             if(arr.length > 0){
                 Carousel._sequence = 0;
                 Carousel._size = arr.length;
-                Carousel.Next(); //start
-                Carousel._interval = setInterval(function(){ Carousel.Next(); },3000);
+                Carousel.NextIMG(); //start
+                Carousel._interval = setInterval(function(){ Carousel.NextIMG(); },3000);
             }
             
         } else {
@@ -32,24 +32,29 @@ class Carousel {
         }
     }
 
-    static Next(){
-    carouselImg.innerHTML = "";
+    // static Next(){
+    // carouselImg.innerHTML = "";
 
-    const contLink = document.createElement('a');
-    contLink.href = carouselArr[Carousel._sequence].url;
-    const contImg = document.createElement('img');
-    contImg.src = carouselArr[Carousel._sequence].img;
+    // const contLink = document.createElement('a');
+    // contLink.href = carouselArr[Carousel._sequence].url;
+    // const contImg = document.createElement('img');
+    // contImg.src = carouselArr[Carousel._sequence].img;
 
-    carouselText.textContent = carouselArr[Carousel._sequence].title;
+    // carouselText.textContent = carouselArr[Carousel._sequence].title;
 
-    carouselImg.appendChild(contLink);
-    contLink.appendChild(contImg);
+    // carouselImg.appendChild(contLink);
+    // contLink.appendChild(contImg);
 
-    Carousel._sequence = (Carousel._sequence + 1) % Carousel._size;
-    }
+    // Carousel._sequence = (Carousel._sequence + 1) % Carousel._size;
+    // }
 
     static NextIMG() {
-        console.log("Botão clicado")
+       
+        
+        if (Carousel._sequence >= Carousel._size) {
+            Carousel._sequence = 0;
+        }
+        
         carouselImg.innerHTML = "";
 
         const contLink = document.createElement('a');
@@ -64,12 +69,22 @@ class Carousel {
 
         Carousel._sequence++;
 
-        if (Carousel._sequence >= Carousel._size) {
-            Carousel._sequence = 0;
+        
+    }
+
+    static resetIMG() {
+        console.log("Botão clicado")
+
+        Carousel._sequence -= 2;
+
+        if (Carousel._sequence < 0) {
+            Carousel._sequence = Carousel._size - 1;
         }
+
+        Carousel.NextIMG();
     }
 };
 
 
 setaDireitaCarousel.addEventListener('click', Carousel.NextIMG);
-setaEsquerdaCarousel.addEventListener('click', Carousel.NextIMG);
+setaEsquerdaCarousel.addEventListener('click', Carousel.resetIMG);
