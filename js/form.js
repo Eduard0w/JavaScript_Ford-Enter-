@@ -30,6 +30,7 @@ function Post(form) {
 
 function Enviar() {
   console.log("enviou");
+  limparForm();
   var nome = document.getElementById("nomeid");
 
   if (nome.value != "") {
@@ -39,4 +40,8 @@ function Enviar() {
         " os seus dados foram encaminhados com sucesso"
     );
   }
+
+  informacoes.forEach(contatos => {
+    console.log(contatos)
+  })
 }
