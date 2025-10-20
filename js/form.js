@@ -26,6 +26,7 @@ function Post(form) {
   );
   informacoes.push(data);
   Enviar();
+  form.reset();
 }
 
 function Enviar() {
