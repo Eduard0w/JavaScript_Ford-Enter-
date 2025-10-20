@@ -30,7 +30,6 @@ function Post(form) {
 
 function Enviar() {
   console.log("enviou");
-  limparForm();
   var nome = document.getElementById("nomeid");
 
   if (nome.value != "") {
